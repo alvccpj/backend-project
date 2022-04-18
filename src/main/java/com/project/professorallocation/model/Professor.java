@@ -48,11 +48,11 @@ public class Professor {
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getNome() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setNome(String name) {
 		this.name = name;
 	}
 
@@ -74,7 +74,7 @@ public class Professor {
 
 	@Override
 	public String toString() {
-		return "Professor [id=" + id + ", name=" + name + ", cpf=" + cpf + ", departmentId=" + departmentId + "]";
+		return "Professor [id=" + id + ", nome=" + name + ", cpf=" + cpf + ", departmentId=" + departmentId + "]";
 	}
 
 }
