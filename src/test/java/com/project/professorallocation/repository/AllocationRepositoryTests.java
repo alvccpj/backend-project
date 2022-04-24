@@ -45,14 +45,19 @@ public class AllocationRepositoryTests {
 	@Test
 	public void findAll() {
 		List<Allocation> allAllocations = repository.findAll();
-		
+
 		allAllocations.forEach(System.out::println);
 	}
-	
+
 	@Test
 	public void findAllByProfessorId() {
 		List<Allocation> allocationsOfASpecificProfessor = repository.findByProfessorId(1L);
-		
+
 		allocationsOfASpecificProfessor.forEach(System.out::println);
+	}
+
+	@Test
+	public void deleteAll() {
+		repository.deleteAllInBatch();
 	}
 }

@@ -65,7 +65,7 @@ public class ProfessorRepositoryTests {
 		professorBeingCreated.setId(2L);
 		professorBeingCreated.setNome("Professor Juvenal");
 		professorBeingCreated.setCpf("98727364754");
-		professorBeingCreated.setDepartmentId(7L);
+		professorBeingCreated.setDepartmentId(12L);
 
 		professorBeingCreated = repository.save(professorBeingCreated);
 		System.out.println(professorBeingCreated);
