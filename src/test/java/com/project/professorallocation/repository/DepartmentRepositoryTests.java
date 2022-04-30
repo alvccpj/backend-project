@@ -49,7 +49,7 @@ public class DepartmentRepositoryTests {
 	@Test
 	public void create() {
 		Department departmentBeingCreated = new Department();
-		departmentBeingCreated.setNome("Biotecnology Department");
+		departmentBeingCreated.setName("Biotecnology Department");
 
 		departmentBeingCreated = repository.save(departmentBeingCreated);
 		System.out.println(departmentBeingCreated);
@@ -59,7 +59,7 @@ public class DepartmentRepositoryTests {
 	public void update() {
 		Department departmentBeingCreated = new Department();
 		departmentBeingCreated.setId(11L);
-		departmentBeingCreated.setNome("Tecnology Department");
+		departmentBeingCreated.setName("Tecnology Department");
 
 		departmentBeingCreated = repository.save(departmentBeingCreated);
 		System.out.println(departmentBeingCreated);

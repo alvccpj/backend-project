@@ -31,7 +31,7 @@ public class DepartmentServiceTests {
 	@Test
 	public void create() {
 		Department departmentBeingCreated = new Department();
-		departmentBeingCreated.setNome("Biotecnology Department");
+		departmentBeingCreated.setName("Biotecnology Department");
 
 		departmentBeingCreated = service.create(departmentBeingCreated);
 		System.out.println(departmentBeingCreated);
@@ -41,7 +41,7 @@ public class DepartmentServiceTests {
 	public void update() {
 		Department departmentBeingCreated = new Department();
 		departmentBeingCreated.setId(12L);
-		departmentBeingCreated.setNome("Physics Department");
+		departmentBeingCreated.setName("Physics Department");
 
 		departmentBeingCreated = service.create(departmentBeingCreated);
 		System.out.println(departmentBeingCreated);

@@ -15,32 +15,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.professorallocation.model.Department;
-import com.project.professorallocation.service.DepartmentService;
+import com.project.professorallocation.model.Allocation;
+import com.project.professorallocation.service.AllocationService;
 
 @RestController
-@RequestMapping(path = "/departments")
-public class DepartmentController {
+@RequestMapping(path = "/allocations")
+public class AllocationController {
 
-	private final DepartmentService service;
+	private final AllocationService service;
 
-	public DepartmentController(DepartmentService service) {
+	public AllocationController(AllocationService service) {
 		super();
 		this.service = service;
 	}
 
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<List<Department>> findAll() {
-		List<Department> allDepartments = service.findAll();
+	public ResponseEntity<List<Allocation>> findAll() {
+		List<Allocation> allItems = service.findAll();
 
-		return new ResponseEntity<>(allDepartments, HttpStatus.OK);
+		return new ResponseEntity<List<Allocation>>(allItems, HttpStatus.OK);
 	}
 
-	@GetMapping(path = "/{dept_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/{allocation_id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Department> findById(@PathVariable(name = "dept_id") Long id) {
-		Department item = service.findById(id);
+	public ResponseEntity<Allocation> findById(@PathVariable(name = "allocation_id") Long id) {
+		Allocation item = service.findById(id);
 
 		if (item == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -54,18 +54,19 @@ public class DepartmentController {
 
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Department> create(@RequestBody Department dept) {
-		Department item = service.create(dept);
+	public ResponseEntity<Allocation> create(@RequestBody Allocation allocation) {
+		Allocation item = service.create(allocation);
 
 		return new ResponseEntity<>(item, HttpStatus.CREATED);
 
 	}
 
-	@PutMapping(path = "/{dept_id}", produces = MediaType.APPLICATION_CBOR_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(path = "/{allocation_id}", produces = MediaType.APPLICATION_CBOR_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Department> update(@PathVariable(name = "dept_id") Long id, @RequestBody Department dept) {
-		dept.setId(id);
-		Department item = service.update(dept);
+	public ResponseEntity<Allocation> update(@PathVariable(name = "allocation_id") Long id,
+			@RequestBody Allocation allocation) {
+		allocation.setId(id);
+		Allocation item = service.update(allocation);
 
 		if (item == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -74,9 +75,9 @@ public class DepartmentController {
 		}
 	}
 
-	@DeleteMapping(path = "/{dept_id}")
+	@DeleteMapping(path = "/{allocation_id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<Void> delete(@PathVariable(name = "dept_id") Long id) {
+	public ResponseEntity<Void> delete(@PathVariable(name = "allocation_id") Long id) {
 		service.deleteById(id);
 
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);

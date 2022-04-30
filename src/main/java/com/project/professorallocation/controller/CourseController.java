@@ -15,32 +15,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.professorallocation.model.Department;
-import com.project.professorallocation.service.DepartmentService;
+import com.project.professorallocation.model.Course;
+import com.project.professorallocation.service.CourseService;
 
 @RestController
-@RequestMapping(path = "/departments")
-public class DepartmentController {
+@RequestMapping(path = "/courses")
+public class CourseController {
 
-	private final DepartmentService service;
+	private final CourseService service;
 
-	public DepartmentController(DepartmentService service) {
+	public CourseController(CourseService service) {
 		super();
 		this.service = service;
 	}
 
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<List<Department>> findAll() {
-		List<Department> allDepartments = service.findAll();
+	public ResponseEntity<List<Course>> findAll() {
+		List<Course> allCourses = service.findAll();
 
-		return new ResponseEntity<>(allDepartments, HttpStatus.OK);
+		return new ResponseEntity<>(allCourses, HttpStatus.OK);
 	}
 
-	@GetMapping(path = "/{dept_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/{course_id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Department> findById(@PathVariable(name = "dept_id") Long id) {
-		Department item = service.findById(id);
+	public ResponseEntity<Course> findById(@PathVariable(name = "course_id") Long id) {
+		Course item = service.findById(id);
 
 		if (item == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -49,23 +49,22 @@ public class DepartmentController {
 			return new ResponseEntity<>(item, HttpStatus.OK);
 
 		}
-
 	}
 
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Department> create(@RequestBody Department dept) {
-		Department item = service.create(dept);
+	public ResponseEntity<Course> create(@RequestBody Course course) {
+		Course item = service.create(course);
 
 		return new ResponseEntity<>(item, HttpStatus.CREATED);
 
 	}
-
-	@PutMapping(path = "/{dept_id}", produces = MediaType.APPLICATION_CBOR_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	
+	@PutMapping(path = "/{course_id}", produces = MediaType.APPLICATION_CBOR_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Department> update(@PathVariable(name = "dept_id") Long id, @RequestBody Department dept) {
-		dept.setId(id);
-		Department item = service.update(dept);
+	public ResponseEntity<Course> update(@PathVariable(name = "course_id") Long id, @RequestBody Course course) {
+		course.setId(id);
+		Course item = service.update(course);
 
 		if (item == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -74,12 +73,13 @@ public class DepartmentController {
 		}
 	}
 
-	@DeleteMapping(path = "/{dept_id}")
+	@DeleteMapping(path = "/{course_id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<Void> delete(@PathVariable(name = "dept_id") Long id) {
+	public ResponseEntity<Void> delete(@PathVariable(name = "course_id") Long id) {
 		service.deleteById(id);
 
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+
 
 }

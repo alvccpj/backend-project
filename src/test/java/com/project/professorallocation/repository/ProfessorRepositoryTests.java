@@ -51,7 +51,7 @@ public class ProfessorRepositoryTests {
 	@Test
 	public void create() {
 		Professor professorBeingCreated = new Professor();
-		professorBeingCreated.setNome("Professor Álvaro");
+		professorBeingCreated.setName("Professor Álvaro");
 		professorBeingCreated.setCpf("14486231465");
 		professorBeingCreated.setDepartmentId(11L);
 
@@ -63,7 +63,7 @@ public class ProfessorRepositoryTests {
 	public void update() {
 		Professor professorBeingCreated = new Professor();
 		professorBeingCreated.setId(2L);
-		professorBeingCreated.setNome("Professor Juvenal");
+		professorBeingCreated.setName("Professor Juvenal");
 		professorBeingCreated.setCpf("98727364754");
 		professorBeingCreated.setDepartmentId(12L);
 

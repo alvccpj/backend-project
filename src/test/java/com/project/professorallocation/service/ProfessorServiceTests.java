@@ -31,7 +31,7 @@ public class ProfessorServiceTests {
 	@Test
 	public void create() {
 		Professor professorBeingCreated = new Professor();
-		professorBeingCreated.setNome("English Professor");
+		professorBeingCreated.setName("English Professor");
 		professorBeingCreated.setCpf("19986574532");
 		professorBeingCreated.setDepartmentId(11L);
 
@@ -43,7 +43,7 @@ public class ProfessorServiceTests {
 	public void update() {
 		Professor professorBeingCreated = new Professor();
 		professorBeingCreated.setId(5L);
-		professorBeingCreated.setNome("Logystics Professor");
+		professorBeingCreated.setName("Logystics Professor");
 		professorBeingCreated.setCpf("6574633232");
 		professorBeingCreated.setDepartmentId(12L);
 
