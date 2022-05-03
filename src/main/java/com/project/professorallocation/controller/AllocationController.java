@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.professorallocation.model.Allocation;
 import com.project.professorallocation.service.AllocationService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping(path = "/allocations")
 public class AllocationController {
@@ -28,7 +32,8 @@ public class AllocationController {
 		super();
 		this.service = service;
 	}
-
+	
+	@ApiOperation(value = "Find all allocations")
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<List<Allocation>> findAll() {
@@ -36,7 +41,13 @@ public class AllocationController {
 
 		return new ResponseEntity<List<Allocation>>(allItems, HttpStatus.OK);
 	}
+	
+	@ApiOperation(value = "Finds an allocation by id")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "OK"),
+		@ApiResponse(code = 404, message = "Allocatio NOT FOUND")
 
+	})
 	@GetMapping(path = "/{allocation_id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Allocation> findById(@PathVariable(name = "allocation_id") Long id) {
