@@ -60,7 +60,7 @@ public class CourseController {
 
 	}
 	
-	@PutMapping(path = "/{course_id}", produces = MediaType.APPLICATION_CBOR_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(path = "/{course_id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Course> update(@PathVariable(name = "course_id") Long id, @RequestBody Course course) {
 		course.setId(id);

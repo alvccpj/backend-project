@@ -61,7 +61,7 @@ public class DepartmentController {
 
 	}
 
-	@PutMapping(path = "/{dept_id}", produces = MediaType.APPLICATION_CBOR_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(path = "/{dept_id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Department> update(@PathVariable(name = "dept_id") Long id, @RequestBody Department dept) {
 		dept.setId(id);

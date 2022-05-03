@@ -19,6 +19,10 @@ public class AllocationService {
 	public Allocation findById(Long id) {
 		return repository.findById(id).orElse(null);
 	}
+	
+	public List<Allocation> findByProfessorId(Long id) {
+		return repository.findByProfessorId(id);
+	}
 
 	public List<Allocation> findAll() {
 		return repository.findAll();

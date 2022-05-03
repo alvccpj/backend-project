@@ -52,16 +52,29 @@ public class AllocationController {
 
 	}
 
-	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Allocation> create(@RequestBody Allocation allocation) {
-		Allocation item = service.create(allocation);
-
-		return new ResponseEntity<>(item, HttpStatus.CREATED);
+	@GetMapping(path = "/professor/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity <List<Allocation>> findByProfessorId(@PathVariable(name = "id") Long id) {
+		List<Allocation> allocationItem = service.findByProfessorId(id);
+		return new ResponseEntity<>(allocationItem, HttpStatus.OK);
 
 	}
 
-	@PutMapping(path = "/{allocation_id}", produces = MediaType.APPLICATION_CBOR_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<Allocation> create(@RequestBody Allocation allocation) {
+		try {
+			Allocation item = service.create(allocation);
+
+			return new ResponseEntity<>(item, HttpStatus.CREATED);
+
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+	}
+
+	@PutMapping(path = "/{allocation_id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Allocation> update(@PathVariable(name = "allocation_id") Long id,
 			@RequestBody Allocation allocation) {
